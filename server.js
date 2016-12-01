@@ -5,7 +5,7 @@ var path = require('path');
 var port = process.env.PORT || 3000;
 var mongoose = require('mongoose');
 var passport = require('passport');
-
+var mongo = require('mongodb');
 var flash = require('connect-flash');
 var morgan = require('morgan');
 var cookieParser = require('cookie-parser');
@@ -42,4 +42,6 @@ app.use(flash());
 require('./app/routes.js')(app, passport);
 
 app.listen(port);
-console.log('listening at port ' + port);
+console.log('\n');
+console.log('listening on port ' + port + '\n');
+console.log('Do not use localhost:3000/ use 127.0.0.1:3000/ as twitter does not authenticate localhost urls');

@@ -31,6 +31,7 @@ module.exports = function(passport) {
     function(req, token, tokenSecret, profile, done) {
 
         process.nextTick(function() {
+          // check if the user is already logged in
             if (!req.user) {
                 User.findOne({ 'twitter.id' : profile.id }, function(err, user) {
                     if (err)
@@ -49,6 +50,7 @@ module.exports = function(passport) {
                         }
                         return done(null, user); // user found, return that user
                     } else {
+                      //creating new user
                         var newUser  = new User();
                         newUser.twitter.id  = profile.id;
                         newUser.twitter.token = token;
@@ -57,13 +59,14 @@ module.exports = function(passport) {
                         newUser.save(function(err) {
                             if (err)
                                 return done(err);
-
+                            console.log('User Saved!');
                             return done(null, newUser);
                         });
                     }
                 });
 
             } else {
+              //linking already existing and logged in user
                 var user = req.user;
                 user.twitter.id  = profile.id;
                 user.twitter.token = token;
