@@ -4,6 +4,14 @@ module.exports = function(app, passport) {
     res.render('index.ejs');
   });
 
+  app.get('/watcher', function(req,res) {
+    res.render('watcher.ejs')
+  });
+
+  app.get('/howto', function(req,res) {
+    res.render('howto.ejs')
+  });
+
   app.get('/login', function(req,res) {
     res.render('login.ejs');
   });

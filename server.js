@@ -5,6 +5,7 @@ var express = require('express'),
     port = process.env.PORT || 3000,
     mongoose = require('mongoose'),
     passport = require('passport'),
+    TwitterStrategy = require('passport-twitter').Strategy;
     flash = require('connect-flash'),
     morgan = require('morgan'),
     cookieParser = require('cookie-parser'),
