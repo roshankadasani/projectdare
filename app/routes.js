@@ -16,11 +16,27 @@ module.exports = function(app, passport) {
     res.render('login.ejs');
   });
 
+  app.get('/auth/twitter', passport.authenticate('twitter', { scope : 'email' }));
+
+  app.get('/auth/twitter/callback',
+      passport.authenticate('twitter', {
+          successRedirect : '/dashboard',
+          failureRedirect : '/'
+      }));
+
   app.get('/signup', function(req,res) {
     res.render('signup.ejs', {messages: req.flash('signupMessage')});
   });
 
-  app.get('/dashboard', UserLoggedIn, function(req,res) {
+  app.get('/connect/twitter', passport.authorize('twitter', { scope : 'email' }));
+
+  app.get('/connect/twitter/callback',
+      passport.authorize('twitter', {
+          successRedirect : '/dashboard',
+          failureRedirect : '/'
+      }));
+
+  app.get('/dashboard', isLoggedIn, function(req,res) {
     res.render('dashboard.ejs', {
       //to get user out of the session and pass to template
       user: req.user
@@ -34,7 +50,8 @@ module.exports = function(app, passport) {
 
 };
 
-function UserLoggedIn(req, res, next) {
-  if (req.isAuthenticated()) return next();
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated())
+      return next();
   res.redirect('/');
 }

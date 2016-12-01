@@ -1,33 +1,38 @@
 //server file
-var express = require('express'),
-    app = express(),
-    path = require('path'),
-    port = process.env.PORT || 3000,
-    mongoose = require('mongoose'),
-    passport = require('passport'),
-    TwitterStrategy = require('passport-twitter').Strategy;
-    flash = require('connect-flash'),
-    morgan = require('morgan'),
-    cookieParser = require('cookie-parser'),
-    bodyParser = require('body-parser'),
-    session = require('express-session'),
-    configDB = require('./config/database.js');
+var express = require('express');
+var app = express();
+var path = require('path');
+var port = process.env.PORT || 3000;
+var mongoose = require('mongoose');
+var passport = require('passport');
+
+var flash = require('connect-flash');
+var morgan = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var session = require('express-session');
+var configDB = require('./config/database.js');
 
 //database mlab connection
-mongoose.connect('mongodb://cpsc473:webdev@ds053146.mlab.com:53146/473projects');
+mongoose.connect(configDB.url);
 
 //passport config file
-//require('.config/passport')(passport);
+require('./config/passport')(passport);
 
 //logs every request to console
 app.use(morgan('dev'));
 app.use(cookieParser());
-app.use(bodyParser());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(session({ secret: 'secretkey'}));
+app.use(session({
+  secret: 'secretkey',
+  resave: true,
+  saveUninitialized: true
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 
