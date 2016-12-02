@@ -43,9 +43,11 @@
 
     <main>
       <div class="container-fluid" style="padding-top: 30px;">
-        <h3>Welcome <%= user.twitter.displayName %></h3>
-        <p>This is the body part</p>
-        <a href="/new" class="btn btn-secondary">Create New Dare</a>
+        <h3>Create New Dare</h3>
+        <label>Dare title:</label><br>
+        <input id="title" type="text"><br>
+        <label>Dare description:</label><br>
+        <textarea id="description" rows="5" cols="50"></textarea><br>
       </div>
     </main>
 

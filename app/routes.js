@@ -43,6 +43,10 @@ module.exports = function(app, passport) {
     });
   });
 
+  app.get('/new', isLoggedIn, function(req, res) {
+    res.render('new.ejs', { user: req.user });
+  });
+
   app.get('/logout', function(req,res) {
     req.logout();
     res.redirect('/');
