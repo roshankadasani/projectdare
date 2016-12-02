@@ -44,10 +44,13 @@
     <main>
       <div class="container-fluid" style="padding-top: 30px;">
         <h3>Create New Dare</h3>
-        <label>Dare title:</label><br>
-        <input id="title" type="text"><br>
-        <label>Dare description:</label><br>
-        <textarea id="description" rows="5" cols="50"></textarea><br>
+        <form action="/new/savedare" method="post">
+          <label>Dare title:</label><br>
+          <input name="title" type="text" data-bind="value: ko.toJSON(title)"><br>
+          <label>Dare description:</label><br>
+          <textarea name="description" rows="5" cols="50" data-bind="value: ko.toJSON(description)"></textarea><br>
+          <button type="submit">Submit</button>
+        </form>
       </div>
     </main>
 
@@ -61,6 +64,7 @@
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js" integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/libs/knockout-3.4.1.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="https://v4-alpha.getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
   </body>

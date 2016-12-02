@@ -52,6 +52,12 @@ module.exports = function(app, passport) {
     res.redirect('/');
   });
 
+  app.post('/new/savedare', function(req, res) {
+    console.log(req.body);
+
+    res.redirect('/dashboard');
+  });
+
 };
 
 function isLoggedIn(req, res, next) {
