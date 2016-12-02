@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var dareSchema = mongoose.schema({
+var dareSchema = mongoose.Schema({
   creator: String,
   title: String,
   description: String,
