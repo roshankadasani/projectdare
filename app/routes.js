@@ -51,7 +51,12 @@ module.exports = function(app, passport) {
   });
 
   app.get('/dares', function(req, res) {
-
+    dares.getAllDares(function(err, dareList) {
+      if (err) { console.log(err); }
+      else {
+        res.json(dareList);
+      }
+    });
   })
 
   app.get('/new', isLoggedIn, function(req, res) {

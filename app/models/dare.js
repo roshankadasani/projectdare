@@ -33,3 +33,10 @@ Dare.saveDare = function(username, title, description, callback) {
     }
   });
 }
+
+Dare.getAllDares = function(callback) {
+  this.find().exec(function (err, dares) {
+    if (err) { return callback(err); }
+    callback(null, dares);
+  });
+}
