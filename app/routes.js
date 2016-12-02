@@ -1,4 +1,4 @@
-var Dare = require('./models/dare.js');
+var dares = require('./models/dare.js');
 
 module.exports = function(app, passport) {
 
@@ -45,17 +45,28 @@ module.exports = function(app, passport) {
     });
   });
 
-  app.get('/new', isLoggedIn, function(req, res) {
-    res.render('new.ejs', { user: req.user });
-  });
-
   app.get('/logout', function(req,res) {
     req.logout();
     res.redirect('/');
   });
 
+  app.get('/dares', function(req, res) {
+
+  })
+
+  app.get('/new', isLoggedIn, function(req, res) {
+    res.render('new.ejs', { user: req.user });
+  });
+
   app.post('/new/savedare', function(req, res) {
-    saveNewDare(req, res);
+    var username = req.user.twitter.username,
+        title = req.body.title,
+        description = req.body.description;
+
+    dares.saveDare(username, title, description, function(result) {
+      console.log(result);
+      res.redirect('/dashboard');
+    });
   });
 
 };
@@ -64,33 +75,4 @@ function isLoggedIn(req, res, next) {
   if (req.isAuthenticated())
       return next();
   res.redirect('/');
-}
-
-function saveNewDare(req, res) {
-  var dare = new Dare();
-
-  dare.creator = req.user.twitter.username;
-  dare.title = req.body.title;
-  dare.description = req.body.description;
-
-  /* get hashtag by first getting the count of dares,
-     multiplying it by 100, and finally converting it 
-     to a hexadecimal string */
-  Dare.count(function (err, count) {
-    if (err) { console.log(err); }
-    else {
-      dare.hashtag = (count * 100 + 1).toString(16);
-      console.log('hashtag: ' + dare.hashtag);
-
-      dare.save(function (err) {
-        if (err) { console.log(err); }
-        else {
-          console.log('New dare saved');
-          console.log(dare);
-
-          res.redirect('/dashboard');
-        }
-      });
-    }
-  });
 }

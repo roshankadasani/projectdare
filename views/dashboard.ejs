@@ -46,6 +46,14 @@
         <h3>Welcome <%= user.twitter.displayName %></h3>
         <p>This is the body part</p>
         <a href="/new" class="btn btn-secondary">Create New Dare</a>
+        <!-- Display Dares -->
+        <h3>List of dares</h3>
+        <ul data-bind="foreach: dares">
+          <li>
+            <a href="#" data-bind="text: title"></a>
+            <span data-bind="text: creator"></span>
+          </li>
+        </ul>
       </div>
     </main>
 
@@ -61,5 +69,7 @@
     <script src="/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="https://v4-alpha.getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script type="text/javascript" src="js/libs/knockout-3.4.1.js"></script>
+    <script src="../public/js/app.js"></script>
   </body>
 </html>
