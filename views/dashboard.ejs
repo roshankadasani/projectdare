@@ -46,14 +46,30 @@
         <h3>Welcome <%= user.twitter.displayName %></h3>
         <p>This is the body part</p>
         <a href="/new" class="btn btn-secondary">Create New Dare</a>
+
         <!-- Display Dares -->
         <h3>List of dares</h3>
         <ul data-bind="foreach: dares">
           <li>
-            <a href="#" data-bind="text: title"></a>
+            <a data-toggle="modal" href="#" data-bind="click: $root.showModal, text: title"></a>
             <span data-bind="text: creator"></span>
           </li>
         </ul>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <h4 class="modal-title" id="myModalLabel" data-bind="text: modalTitle"></h4>
+              <p data-bind="text: modalDescription"></p>
+              <p>Be sure to include the following hashtags in your tweet: !#DEFAULT HASHTAG HERE! #<span data-bind="text: modalHashtag"></span></p>
+              <p>Created by: <span data-bind="text: modalCreator"></span></p>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
 
