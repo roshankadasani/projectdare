@@ -9,42 +9,41 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <!-- Custom styles for this template -->
     <link rel="stylesheet" type="text/css" href="/css/style.css">
-    <link rel="stylesheet" href="/css/sticky-footer-navbar.css">
-    <link rel="stylesheet" href="/css/signin.css">
+    <link rel="stylesheet" href="/css/cover.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
   </head>
 
   <body>
-    <header>
-      <div class="pos-f-t">
-        <div class="collapse" id="navbar-header">
-          <div class="container bg-inverse p-1">
-            <h3>Collapsed content</h3>
-            <p>Toggleable via the navbar brand.</p>
-          </div>
-        </div>
-        <nav class="navbar navbar-light navbar-static-top bg-faded">
-          <div class="container-fluid">
-            <a class="navbar-brand" href="/">#projectdare</a>
-            <button class="navbar-toggler hidden-sm-up" style="float: right" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2" aria-expanded="false" aria-controls="exCollapsingNavbar2" aria-label="Toggle navigation"></button>
-            <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
-              <ul class="nav navbar-nav" style="float: right">
-                <li class="nav-item">
-                  <a class="nav-link" href="/howto">How-to</a>
-                </li>
-                <li class="nav-item">
-                  <button class="nav-link" id="player" style="border-color: rgba(154, 205, 50, 0);background: #f7f7f9;">Login/Signup</button>
-                </li>
-              </ul>
+    <div class="site-wrapper">
+      <div class="site-wrapper-inner">
+        <div class="cover-container">
+
+          <div class="masthead clearfix">
+            <div class="inner">
+              <h3 class="masthead-brand"><a href="/">#projectdare</a></h3>
+              <nav class="nav nav-masthead">
+                <a class="nav-link" href="/howto">How-to</a>
+                <button class="nav-link" id="login_btn" style="border-color: rgba(154, 205, 50, 0);">Login/Signup</button>
+              </nav>
             </div>
           </div>
-        </nav>
-      </div>
-    </header>
 
     <main>
-      <div class="container-fluid" style="padding-top: 30px;">
-        <h2>Game rules and description</h2>
-      </div>
+        <div class="inner cover">
+          <h2> What is #projectdare? </h2>
+
+          <p> It is a game where the risky humans of the Earth choose to do something fun with their lives. </p>
+
+            <ol class="inner cover"> 
+              <p id = "step1"> 1. Sign up with Twitter! <i class="fa fa-twitter" style="font-size:32px;color:#33F9FF"></i></p>
+              <p id = "step2"> 2. Choose from the list of Dares provided by the community </p>
+              <p id = "step3"> 3. Record yourself doing the dare on Twitter and hashtag #ProjectDare</p>
+              <p id = "step4"> 4. Enjoy your accomplishment! </p>
+            </ol>
+        </div>
+
+      <!-- Twitter popup. Hidden when loaded, shows when user clicks on signup/login -->
       <div class="modal fade bd-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="padding-top: 20%;">
         <div class="modal-dialog modal-sm">
           <div class="modal-content">
@@ -62,17 +61,30 @@
           </div>
         </div>
       </div>
+      <!--- Twitter popup end -->
+
+
     </main>
 
-    <footer class="footer">
+    <footer class="mastfoot">
       <div class="container">
         <center>
+               <a href="https://www.facebook.com/"><i class="fa fa-facebook-square fa-3x social"></i></a>
+              <a href="https://twitter.com/"><i class="fa fa-twitter-square fa-3x social"></i></a>
+              <a href="https://plus.google.com/"><i class="fa fa-google-plus-square fa-3x social"></i></a>
+              <a href="mailto:"><i class="fa fa-envelope-square fa-3x social"></i></a>
           <p>Developed by <a href="#">#projectdareteam</a></p>
         </center>
       </div>
     </footer>
+
+        </div>
+      </div>
+    </div>
     
+    <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js" integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY" crossorigin="anonymous"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js" integrity="sha384-Plbmg8JY28KFelvJVai01l8WyZzrYWG825m+cZ0eDDS1f7d/js6ikvy1+X+guPIB" crossorigin="anonymous"></script> -->
     <script src="/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="https://v4-alpha.getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
@@ -82,8 +94,26 @@
       }
 
       $("#player").click(function() {
+          console.log("work");
+          $("#myModal").modal('show');
+      });
+
+      $("#login_btn").click(function() {
+          console.log("work");
           $("#myModal").modal('show');
       });
     </script>
+
+  <!-- Loading different background at random -->
+    <script type="text/javascript">
+    window.onload = function () {    
+        var thediv = document.getElementById("bg");
+        var imgarray = new Array("gif1.gif", "gif2.gif", "gif3.gif", "gif4.gif", "gif5.gif");
+        var spot = Math.floor(Math.random()* imgarray.length);
+        thediv.style.background = "url(images/"+imgarray[spot]+")";
+        thediv.style.backgroundSize = "cover";
+    }
+    </script>
+  <!-- end of loading different background at random -->
   </body>
 </html>

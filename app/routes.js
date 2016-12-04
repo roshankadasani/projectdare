@@ -1,17 +1,33 @@
 var dares = require('./models/dare.js');
+var Twitter = require('twitter');
+var credentials = require('../config/auth.js');
 
 module.exports = function(app, passport) {
+
+  var clientTweets = new Twitter({
+    consumer_key: credentials.twitterAuth.consumerKey,
+    consumer_secret: credentials.twitterAuth.consumerSecret,
+    access_token_key: credentials.twitterAuth.accessToken,
+    access_token_secret: credentials.twitterAuth.accessTokenSecret
+  });
 
   app.get('/', function(req, res) {
     res.render('index.ejs');
   });
 
   app.get('/watcher', function(req,res) {
-    res.render('watcher.ejs')
+    res.render('watcher.ejs');
+  });
+
+  app.get('/watcher/tweets', function(req,res) {
+    clientTweets.get('search/tweets', {q: '#projectdare473'}, function(error, tweets, response) {
+      console.log(tweets.statuses);
+      res.send(tweets);
+    });
   });
 
   app.get('/howto', function(req,res) {
-    res.render('howto.ejs')
+    res.render('howto.ejs');
   });
 
   app.get('/login', function(req,res) {
@@ -45,14 +61,18 @@ module.exports = function(app, passport) {
     });
   });
 
-  app.get('/logout', function(req,res) {
-    req.logout();
-    res.redirect('/');
+  app.get('/dashboard/tweets', function(req, res) {
+    var query = '#projectdare473 ' + req.query.hashtag;
+
+    clientTweets.get('search/tweets', {q: query}, function(error, tweets, response) {
+      if (error) { console.log(error); }
+      else { res.json(tweets); }
+    });
   });
 
   app.get('/dares', function(req, res) {
     dares.getAllDares(function(err, dareList) {
-      if (err) 
+      if (err)
         console.log(err);
       else
         res.json(dareList);
@@ -72,6 +92,11 @@ module.exports = function(app, passport) {
       console.log(result);
       res.redirect('/dashboard');
     });
+  });
+
+  app.get('/logout', function(req,res) {
+    req.logout();
+    res.redirect('/');
   });
 
 };
