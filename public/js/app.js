@@ -26,6 +26,7 @@ var main = function () {
         dataType: 'json',
         success: function(tweets) {
           self.tweets(tweets.statuses);
+          console.log(tweets);
 
           $('#myModal').modal('show');
         }

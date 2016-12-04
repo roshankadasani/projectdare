@@ -24,7 +24,7 @@
         </div>
         <nav class="navbar navbar-light navbar-static-top bg-faded">
           <div class="container-fluid">
-            <a class="navbar-brand" href="#">#projectdare</a>
+            <a class="navbar-brand" href="/">#projectdare</a>
             <button class="navbar-toggler hidden-sm-up" style="float: right" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2" aria-expanded="false" aria-controls="exCollapsingNavbar2" aria-label="Toggle navigation"></button>
             <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
               <ul class="nav navbar-nav" style="float: right">
@@ -68,13 +68,26 @@
               <p data-bind="text: modalDescription"></p>
               <p>Be sure to include the following hashtags in your tweet: #ProjectDare473 #<span data-bind="text: modalHashtag"></span></p>
               <p>Created by: <span data-bind="text: modalCreator"></span></p>
-              <!-- List of tweets related to dare -->
+
+              <!-- List of tweets linked to dare -->
               <ul data-bind="foreach: tweets">
                 <li>
-                  <div class="card card-block" style="width: 18rem;">
+                  <div class="card card-block" style="width: 27rem;">
+                    <!-- Display user avatar, screen name, and tweet text -->
                     <img data-bind="attr:{src: user.profile_image_url}">
                     <h3 class="card-title" data-bind="text: user.screen_name"></h3>
                     <p class="card-text" data-bind="text: text"></p>
+                    <!-- Display video if it's there -->
+                    <div data-bind="if: $data.hasOwnProperty('extended_entities')">
+                      <div data-bind="if: $data.extended_entities.hasOwnProperty('media')">
+                        <div data-bind="if: $data.extended_entities.media[0].hasOwnProperty(video_info">
+                          <video style="width: 100%" controls data-bind="attr:{poster: extended_entities.media[0].media_url">
+                            <source data-bind="attr:{src: extended_entities.media[0].video_info.variants[1].url}" type="video/mp4">
+                            Your browser does not support HTML5 video.
+                          </video>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </li>
               </ul>
