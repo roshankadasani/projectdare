@@ -63,10 +63,21 @@
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
+              <!-- Dare description -->
               <h4 class="modal-title" id="myModalLabel" data-bind="text: modalTitle"></h4>
               <p data-bind="text: modalDescription"></p>
-              <p>Be sure to include the following hashtags in your tweet: !#DEFAULT HASHTAG HERE! #<span data-bind="text: modalHashtag"></span></p>
+              <p>Be sure to include the following hashtags in your tweet: #ProjectDare473 #<span data-bind="text: modalHashtag"></span></p>
               <p>Created by: <span data-bind="text: modalCreator"></span></p>
+              <!-- List of tweets related to dare -->
+              <ul data-bind="foreach: tweets">
+                <li>
+                  <div class="card card-block" style="width: 18rem;">
+                    <img data-bind="attr:{src: user.profile_image_url}">
+                    <h3 class="card-title" data-bind="text: user.screen_name"></h3>
+                    <p class="card-text" data-bind="text: text"></p>
+                  </div>
+                </li>
+              </ul>
             </div>
           </div>
         </div>

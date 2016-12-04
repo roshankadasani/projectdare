@@ -1,6 +1,7 @@
 var main = function () {
   'use strict';
 
+  // Knockout's view model for dashboard
   function DashboardViewModel() {
     var self = this;
 
@@ -9,6 +10,7 @@ var main = function () {
     self.modalDescription = ko.observable();
     self.modalCreator = ko.observable();
     self.modalHashtag = ko.observable();
+    self.tweets = ko.observableArray();
 
     self.showModal = function(dare) {
       self.modalTitle(dare.title);
@@ -16,7 +18,18 @@ var main = function () {
       self.modalCreator(dare.creator);
       self.modalHashtag(dare.hashtag);
 
-      $('#myModal').modal('show');
+      // get list of tweets containing our dare's hashtag, show modal
+      $.ajax({
+        method: 'GET',
+        url: '/dashboard/tweets?hashtag=%23' + dare.hashtag,
+        contentType: 'application/json',
+        dataType: 'json',
+        success: function(tweets) {
+          self.tweets(tweets.statuses);
+
+          $('#myModal').modal('show');
+        }
+      });
     }
 
     $.getJSON('/dares', function(dares) {
@@ -25,6 +38,10 @@ var main = function () {
     });
   }
   ko.applyBindings(new DashboardViewModel());
+
+  function getTweets(tag, callback) {
+
+  }
 }
 
 $(document).ready(main);
