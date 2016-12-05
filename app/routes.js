@@ -79,7 +79,7 @@ module.exports = function(app, passport) {
     });
   });
 
-  app.get('/new', isLoggedIn, function(req, res) {
+  app.get('/new', function(req, res) {
     res.render('new.ejs', { user: req.user });
   });
 
