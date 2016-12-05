@@ -16,10 +16,9 @@
 
 
 
-  <body id="bg">
+  <body>
     <div class="site-wrapper">
       <div class="site-wrapper-inner">
-
         <div class="cover-container">
           <div class="masthead clearfix">
             <div class="inner">
@@ -97,18 +96,5 @@
           $("#myModal").modal('show');
       });
     </script>
-
-    <!-- Loading different background at random -->
-    <script type="text/javascript">
-    window.onload = function () {    
-        var thediv = document.getElementById("bg");
-        var imgarray = new Array("gif1.gif", "gif2.gif", "gif3.gif", "gif4.gif", "gif5.gif");
-        var spot = Math.floor(Math.random()* imgarray.length);
-        thediv.style.background = "url(images/"+imgarray[spot]+")";
-        thediv.style.backgroundSize = "cover";
-    }
-    </script>
-  <!-- end of loading different background at random -->
-
   </body>
 </html>
