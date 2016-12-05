@@ -2,3 +2,61 @@
     font-size: 2.25rem;
     font-weight: 500;
 }
+
+.lead2 {
+  font-size: 1.25rem;
+  font-weight: 300;
+}
+
+.dareRelatedTweets{
+
+}
+
+#tweetCard{
+  padding: 0.3% 3% 0% 3%;
+}
+
+.twitterCard{
+   /*float:left;*/
+   padding: 1%;
+}
+
+.rownew{
+	-moz-column-width: 19em;
+	-webkit-column-width: 19em;
+	-moz-column-gap: 1em;
+	-webkit-column-gap: 1em;
+}
+
+.jumbotron {
+    padding: 1rem 0rem;
+    margin-bottom: 0rem;
+    background-color: #ffffff;
+}
+
+.tweetsList{
+  list-style-type: none;
+  display: inline-block;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.tweetsListElements{
+  float: left;
+}
+
+.itemnew {
+	display: inline-block;
+	width: 100%;
+}
+
+#dareList{
+  min-height: 300px;
+  max-height: 500px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+#bd{
+  overflow: hidden;
+}

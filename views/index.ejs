@@ -10,25 +10,31 @@
     <!-- Custom styles for this template -->
     <link rel="stylesheet" type="text/css" href="/css/style.css">
     <link rel="stylesheet" href="/css/cover.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
   </head>
 
-  <body>
+
+
+  <body id="bg">
     <div class="site-wrapper">
       <div class="site-wrapper-inner">
-        <div class="cover-container">
 
+        <div class="cover-container">
           <div class="masthead clearfix">
             <div class="inner">
               <h3 class="masthead-brand">#projectdare</h3>
               <nav class="nav nav-masthead">
                 <a class="nav-link" href="/howto">How-to</a>
-                <button class="nav-link" id="login_btn" style="border-color: rgba(154, 205, 50, 0);">Login/Signup</button>
+                <a class="nav-link" id="login_btn" style="border-color: rgba(154, 205, 50, 0);">Login/Signup</a>
               </nav>
             </div>
           </div>
 
-          <div class="inner cover">
+          <div class="inner cover" >
+
             <p class="lead">
+            <!-- <img src="/images/butterfly.png" alt="butterfly" style="width:250px;height:250px;"> -->
               <span class="cover-heading">Are you a </span>
               <button id="player" class="btn btn-lg btn-secondary">Player</button>
               <span class="cover-heading">or</span>
@@ -37,6 +43,7 @@
             </p>
           </div>
 
+           <!-- Twitter popup. Hidden when loaded, shows when user clicks on signup/login -->
           <div class="modal fade bd-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="padding-top: 20%;">
             <div class="modal-dialog modal-sm">
               <div class="modal-content">
@@ -52,12 +59,19 @@
               </div>
             </div>
           </div>
+           <!--- Twitter popup end -->
 
-          <div class="mastfoot">
-            <div class="inner">
-              <p>Developed by <a href="#">#projectdareteam</a></p>
-            </div>
-          </div>
+    <footer class="mastfoot">
+      <div class="container">
+        <center>
+              <a href="https://www.facebook.com/"><i class="fa fa-facebook-square fa-3x social"></i></a>
+              <a href="https://twitter.com/"><i class="fa fa-twitter-square fa-3x social"></i></a>
+              <a href="https://plus.google.com/"><i class="fa fa-google-plus-square fa-3x social"></i></a>
+              <a href="mailto:"><i class="fa fa-envelope-square fa-3x social"></i></a>
+          <p>Developed by <a href="#">#projectdareteam</a></p>
+        </center>
+      </div>
+    </footer>
 
         </div>
       </div>
@@ -83,5 +97,18 @@
           $("#myModal").modal('show');
       });
     </script>
+
+    <!-- Loading different background at random -->
+    <script type="text/javascript">
+    window.onload = function () {    
+        var thediv = document.getElementById("bg");
+        var imgarray = new Array("gif1.gif", "gif2.gif", "gif3.gif", "gif4.gif", "gif5.gif");
+        var spot = Math.floor(Math.random()* imgarray.length);
+        thediv.style.background = "url(images/"+imgarray[spot]+")";
+        thediv.style.backgroundSize = "cover";
+    }
+    </script>
+  <!-- end of loading different background at random -->
+
   </body>
 </html>

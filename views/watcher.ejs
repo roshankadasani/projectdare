@@ -11,53 +11,77 @@
     <link rel="stylesheet" type="text/css" href="/css/style.css">
     <link rel="stylesheet" href="/css/sticky-footer-navbar.css">
     <link rel="stylesheet" href="/css/signin.css">
+    <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
   </head>
 
   <body>
-    <div class="pos-f-t">
-      <div class="collapse" id="navbar-header">
-        <div class="container bg-inverse p-1">
-          <h3>Collapsed content</h3>
-          <p>Toggleable via the navbar brand.</p>
-        </div>
-      </div>
-      <nav class="navbar navbar-light navbar-static-top bg-faded">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="/">#projectdare</a>
-          <button class="navbar-toggler hidden-sm-up" style="float: right" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2" aria-expanded="false" aria-controls="exCollapsingNavbar2" aria-label="Toggle navigation"></button>
-          <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
-            <ul class="nav navbar-nav" style="float: right">
-              <li class="nav-item">
-                <a class="nav-link" href="/howto">How-to</a>
-              </li>
-              <li class="nav-item">
-                <button class="nav-link" id="player" style="border-color: rgba(154, 205, 50, 0); background: #f7f7f9;">Login/Signup</button>
-              </li>
-            </ul>
+    <header>
+      <div class="pos-f-t">
+        <div class="collapse" id="navbar-header">
+          <div class="container bg-inverse p-1">
+            <h3>Collapsed content</h3>
+            <p>Toggleable via the navbar brand.</p>
           </div>
         </div>
-      </nav>
-    </div>
-    <div class="container-fluid" style="padding-top: 30px;">
-      <h2>display all the tweets</h2>
-    </div>
-    <div class="modal fade bd-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="padding-top: 20%;">
-      <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-          <center>
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-              <h4 class="modal-title" style="color: #353535;">Login Using twitter</h4>
+        <nav class="navbar navbar-light navbar-static-top bg-faded">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="/">#projectdare</a>
+            <button class="navbar-toggler hidden-sm-up" style="float: right" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2" aria-expanded="false" aria-controls="exCollapsingNavbar2" aria-label="Toggle navigation"></button>
+            <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
+              <ul class="nav navbar-nav" style="float: right">
+                <li class="nav-item">
+                  <a class="nav-link" href="/howto">How-to</a>
+                </li>
+                <li class="nav-item">
+                  <button class="nav-link" id="player" style="border-color: rgba(154, 205, 50, 0); background: #f7f7f9;">Login/Signup</button>
+                </li>
+              </ul>
             </div>
-            <div class="modal-body">
-              <a href="/auth/twitter" class="btn btn-info"><span class="fa fa-twitter"></span>Twitter Login</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="container-fluid" >
+        <div class="jumbotron">
+          <h1 class="display-3">New to #projectdare?</h1>
+          <p class="lead2">Sign up now to join the club!</p>
+        </div>
+        <div class="row">
+          <div class="col-md-2">
+            <h5>Trending dares</h5>
+            <a href="#">#TheWalkingDead</a><br>
+            <a href="#">#CARvsSEA</a><br>
+            <a href="#">#Westworld</a><br>
+            <a href="#">#NationalCookieDay</a><br>
+            <a href="#">#FakeVeganFacts</a>
+          </div>
+          <div class="col-md-10">
+            <div class="rownew">
+              <div id="insertUserInfo"></div>
             </div>
-          </center>
+          </div>
         </div>
       </div>
-    </div>
+      <div class="modal fade bd-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="padding-top: 20%;">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <center>
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" style="color: #353535;">Login Using twitter</h4>
+              </div>
+              <div class="modal-body">
+                <a href="/auth/twitter" class="btn btn-info"><span class="fa fa-twitter"></span>Twitter Login</a>
+              </div>
+            </center>
+          </div>
+        </div>
+      </div>
+    </main>
 
     <footer class="footer">
       <div class="container">
@@ -68,16 +92,9 @@
     </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js" integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.min.js"></script>
+
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="https://v4-alpha.getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
-    <script>
-      window.onload = function() {
-          $("#myModal").modal('hide');
-      }
-
-      $("#player").click(function() {
-          $("#myModal").modal('show');
-      });
-    </script>
+    <script src="/js/watchers.js"></script>
   </body>
 </html>

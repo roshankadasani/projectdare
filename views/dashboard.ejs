@@ -13,37 +13,116 @@
     <link rel="stylesheet" href="/css/signin.css">
   </head>
 
-  <body>
-    <div class="pos-f-t">
-      <div class="collapse" id="navbar-header">
-        <div class="container bg-inverse p-1">
-          <h3>Collapsed content</h3>
-          <p>Toggleable via the navbar brand.</p>
+  <body id="bd">
+    <header>
+      <div class="pos-f-t">
+        <div class="collapse" id="navbar-header">
+          <div class="container bg-inverse p-1">
+            <h3>Collapsed content</h3>
+            <p>Toggleable via the navbar brand.</p>
+          </div>
         </div>
+        <nav class="navbar navbar-light navbar-static-top bg-faded">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="/">#projectdare</a>
+            <button class="navbar-toggler hidden-sm-up" style="float: right" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2" aria-expanded="false" aria-controls="exCollapsingNavbar2" aria-label="Toggle navigation"></button>
+            <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
+              <ul class="nav navbar-nav" style="float: right">
+                <li class="nav-item">
+                  <a class="nav-link" href="/howto">How-to</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/logout">Logout</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
       </div>
-      <nav class="navbar navbar-light navbar-static-top bg-faded">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">#projectdare</a>
-          <button class="navbar-toggler hidden-sm-up" style="float: right" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2" aria-expanded="false" aria-controls="exCollapsingNavbar2" aria-label="Toggle navigation"></button>
-          <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
-            <ul class="nav navbar-nav" style="float: right">
-              <li class="nav-item">
-                <a class="nav-link" href="/howto">How-to</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/logout">Logout</a>
+    </header>
+
+    <main>
+      <div class="container-fluid">
+        <div class="jumbotron">
+          <h1 class="display-3">Welcome <%= user.twitter.displayName %></h1>
+        </div>
+        <div class="row">
+          <div class="col-md-2">
+            <div>
+              <h4>Trending Dares</h4>
+              <a href="#">#TheWalkingDead</a><br>
+              <a href="#">#CARvsSEA</a><br>
+              <a href="#">#Westworld</a><br>
+              <a href="#">#NationalCookieDay</a><br>
+              <a href="#">#FakeVeganFacts</a>
+            </div>
+            <p></p>
+            <a class="btn btn-primary" href="/new" class="btn btn-secondary">Create New Dare</a>
+          </div>
+          <div class="col-md-10">
+            <h4>List of Dares</h4>
+            <ul class="list-group" data-bind="foreach: dares" id="dareList">
+              <li class="list-group-item">
+                <span class="tag tag-default tag-pill float-xs-right">12</span>
+                <a data-toggle="modal" href="#" data-bind="click: $root.showModal, text: title"></a>
+                by <span data-bind="text: creator"></span>
               </li>
             </ul>
           </div>
         </div>
-      </nav>
-    </div>
-    <main>
-      <div class="container-fluid" style="padding-top: 30px;">
-        <h3>Welcome <%= user.twitter.displayName %></h3>
-        <p>This is the body part</p>
+        <!-- Modal -->
+        <div class="modal fade bd-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel" data-bind="text: modalTitle"></h4>
+              </div>
+              <div class="modal-body">
+                <span><strong>Dare Description</strong></span>
+                <p data-bind="text: modalDescription"></p>
+                <p><span><strong>Note: </strong></span>Be sure to include the following hashtags in your tweet: #ProjectDare473 #<span data-bind="text: modalHashtag"></span></p>
+                <p><span><strong>Created by: </strong></span><span data-bind="text: modalCreator"></span></p>
+                <div>
+                  <p><strong>Related Posts</strong></p>
+                  <ul class="tweetsList" data-bind="foreach: tweets">
+                    <li class="tweetsListElements">
+                      <div class="card card-block" style="max-width: 50%; padding: 0;">
+                        <div data-bind="if: $data.hasOwnProperty('extended_entities')">
+                          <div data-bind="if: $data.extended_entities.hasOwnProperty('media')">
+                            <div data-bind="if: $data.extended_entities.media[0].hasOwnProperty(video_info">
+                              <video style="width: 100%" controls data-bind="attr:{poster: extended_entities.media[0].media_url">
+                                <source data-bind="attr:{src: extended_entities.media[0].video_info.variants[1].url}" type="video/mp4">Your browser does not support HTML5 video.
+                              </video>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="media" id="tweetCard">
+                          <div class="media-left">
+                            <img class="media-object" data-bind="attr:{src: user.profile_image_url}">
+                          </div>
+                          <div class="media-body">
+                            <h5 class="media-heading" data-bind="text: user.screen_name"></h5>
+                            <p class="card-text"><small class="text-muted">posted time</small></p>
+                          </div>
+                          <p data-bind="text: text"></p>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
+
     <footer class="footer">
       <div class="container">
         <center>
@@ -51,9 +130,12 @@
         </center>
       </div>
     </footer>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js" integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="https://v4-alpha.getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script type="text/javascript" src="js/libs/knockout-3.4.1.js"></script>
+    <script src="/js/app.js"></script>
   </body>
 </html>
