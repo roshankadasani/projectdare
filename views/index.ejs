@@ -16,7 +16,7 @@
 
 
 
-  <body>
+  <body id="bg">
     <div class="site-wrapper">
       <div class="site-wrapper-inner">
         <div class="cover-container">
@@ -84,6 +84,11 @@
     <script>
       window.onload = function() {
           $("#myModal").modal('hide');
+          var thediv = document.getElementById("bg");
+          var imgarray = new Array("gif1.gif", "gif2.gif", "gif3.gif");
+          var spot = Math.floor(Math.random()* imgarray.length);
+          thediv.style.background = "url(images/"+imgarray[spot]+")";
+          thediv.style.backgroundSize = "cover";
       }
 
       $("#player").click(function() {
