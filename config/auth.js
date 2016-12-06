@@ -1,9 +1,9 @@
 module.exports = {
     'twitterAuth' : {
-      'consumerKey' : 'ODYUi2tZ8Vcs8bfgR1Vko57XO',
-      'consumerSecret' : 'uLjy2AmG9VhhJcCyF65P1OOFWDMl0j0iCjXe4UCVzDePPEMWZE',
+      'consumerKey' : 'FUbLJmh9L4szcej0virRxI9ow',
+      'consumerSecret' : '6mOsakxexCegwxX1kQOBgL6cnB747AKmejvAS9pJ3RFbZ6nFHg',
       'callbackURL' : 'https://projectdare.herokuapp.com/auth/twitter/callback',
-      'accessToken' :    '1331699466-jQbGzEqcHkZXnr4AuWMuZzW8AxbM5vZh7NChOPi',
-      'accessTokenSecret':  'aH14SJuBhatSqVUWvqxE4DUxHJJ6FgGLE8AC6ZT3rJ5Q2'
+      'accessToken' :    '1331699466-ChWli7qCFrlniZVsAuY1DOt2w6LXBOBccD1WLy0',
+      'accessTokenSecret':  'FKsPEbMiQ2iciOk4UFVBOz229eFGoTMzZ0ibmC9nItSvA'
     }
 };
