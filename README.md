@@ -1,4 +1,4 @@
-# <a href="https://projectdare.herokuapp.com/" target="_blank">#projectdare</a>
+# #projectdare
 
 This web application is a simple game that allow users to create a game of dare. Any user can create a dare and challenge any other users. Other users can either participate in the dare or just view the completed dare videos.
 
